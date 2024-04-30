@@ -16,7 +16,7 @@ const Widget = ({ data }) => {
         case "VENTAS":
             details= {
                 isMoney: true,
-                arrowIcon: data.arrow=="up" ? <ArrowOutwardIcon className="i" /> : <ArrowDownwardOutlinedIcon className="i" />,
+                arrowIcon: data.arrow==="up" ? <ArrowOutwardIcon className="i" /> : <ArrowDownwardOutlinedIcon className="i" style={{color: "red"}} />,
                 link: "Ver listado",
                 icon: <StoreOutlinedIcon className='icon' style={{backgroundColor: "rgba(0, 128, 0, 0.2)", color: "black"}} />
             }
@@ -24,7 +24,7 @@ const Widget = ({ data }) => {
         case "GASTOS":
             details= {
                 isMoney: true,
-                arrowIcon: data.arrow=="up" ? <ArrowOutwardIcon className="i" /> : <ArrowDownwardOutlinedIcon className="i" />,
+                arrowIcon: data.arrow==="up" ? <ArrowOutwardIcon className="i" /> : <ArrowDownwardOutlinedIcon className="i" style={{color: "red"}} />,
                 link: "Ver listado",
                 icon: <AccountBalanceWalletOutlinedIcon className='icon' style={{backgroundColor: "rgba(255, 0, 0, 0.2)", color: "black"}} />
             }
@@ -32,7 +32,7 @@ const Widget = ({ data }) => {
         case "PRODUCTOS":
             details= {
                 isMoney: false,
-                arrowIcon: data.arrow=="up" ? <ArrowOutwardIcon className="i" /> : <ArrowDownwardOutlinedIcon className="i" />,
+                arrowIcon: data.arrow==="up" ? <ArrowOutwardIcon className="i" /> : <ArrowDownwardOutlinedIcon className="i" style={{color: "red"}} />,
                 link: "Detalles",
                 icon: <InventoryOutlinedIcon className='icon' style={{backgroundColor: "rgba(0, 0, 128, 0.2)", color: "black"}} />
             }
@@ -40,7 +40,7 @@ const Widget = ({ data }) => {
         case "TOTAL":
             details= {
                 isMoney: true,
-                arrowIcon: data.arrow=="up" ? <ArrowOutwardIcon className="i" /> : <ArrowDownwardOutlinedIcon className="i" />,
+                arrowIcon: data.arrow==="up" ? <ArrowOutwardIcon className="i" /> : <ArrowDownwardOutlinedIcon className="i" style={{color: "red"}} />,
                 link: "Ver listado",
                 icon: <LocalAtmOutlinedIcon className='icon' style={{backgroundColor: "rgba(0, 128, 0, 0.2)", color: "black"}} />
             }
