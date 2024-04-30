@@ -45,7 +45,8 @@ const Sidebar = () => {
           </li>
           <li>
             <AssessmentOutlinedIcon className='icon' />
-            <span>Informes</span></li>
+            <span>Informes</span>
+          </li>
             <p className='title-items'>CONFIGURACIÓN</p>
           <li>
             <SettingsOutlinedIcon className='icon' />
@@ -59,8 +60,6 @@ const Sidebar = () => {
       </div>
       
       <div className='bottom'>
-        <div className="color-option"></div>
-        <div className="color-option"></div>
       </div>
     
     </div>
