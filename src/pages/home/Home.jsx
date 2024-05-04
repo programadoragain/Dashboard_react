@@ -5,9 +5,10 @@ import Navbar from '../../components/navbar/Navbar';
 import Widget from '../../components/widget/Widget';
 import Features from '../../components/features/Features';
 import Chart from '../../components/chart/Chart';
+import List from '../../components/table/List';
 
 const Home = () => {
-  const dataWidget= [ 
+  const dataWidget = [
     {
       title: "VENTAS",
       value: "123900",
@@ -32,7 +33,7 @@ const Home = () => {
       percentage: "8%",
       arrow: "up"
     }
-   ]
+  ]
 
   return (
     <div className="home">
@@ -48,6 +49,10 @@ const Home = () => {
         <div className="charts">
           <Features />
           <Chart />
+        </div>
+        <div className="list-container">
+          <div className="list-title">Lista de transacciones</div>
+          <List />
         </div>
       </div>
     </div>

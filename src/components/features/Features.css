@@ -23,24 +23,54 @@
         align-items: center;
         justify-content: center;
         gap: 15px;
+
+        .features-chart {
+            width: 150px;
+            height: auto;
+        }   
+        
+        .title {
+            font-size: 18x;
+            font-weight: 600;
+            color: rgb(0, 0, 0);
+        }
+
+        .data {
+            display: flex;
+            text-align: center;
+            margin-left: 15px;     
+
+            .amount {
+                font-size: 25px;
+                font-weight: 600;
+            }
+
+            .icon {
+                margin-left: 5px;
+                color: green;
+            }
+        }    
+
+        .desc {
+            font-size: 10px;
+            color: rgb(54, 53, 53);
+            text-align: center;
+        }
+
+        .summary {
+            display: flex;
+            text-align: center;
+            
+            .item-title {
+                color:gray;
+                font-size: 15px;
+            }
+
+            .item-result {
+                margin-top: 5px;
+                font-size: 14px;
+            }
+        }
     }
-
-
-
-    .title {
-        font-weight: 500;
-        color: gray;
-    }
-
-    .amount {
-        font-size: 25px;
-        font-weight: 500;
-    }
-
-    .desc {
-        font-size: 10px;
-        color: black;
-    }
-
 
 }
