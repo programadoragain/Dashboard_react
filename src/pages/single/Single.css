@@ -4,4 +4,50 @@
     .single-container {
         flex: 5;
     }
+
+    .top {
+        padding: 20px;
+        display: flex;
+        gap: 20px;
+
+        .left {
+            flex: 1;
+            -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.50);
+            box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.50);
+            padding: 20px;
+            position: relative;
+
+            .edit-button {
+                position: absolute;
+                top: 0;
+                right: 0;
+                margin: 10px;
+                padding: 5px 12px;
+                font-size: 14px;
+                font-weight: 500;
+                color: #7451f8;
+                background-color: #7551f818;
+                cursor: pointer;
+                border-radius: 5px;
+
+            }
+
+            .item {
+                display: flex;
+                gap: 20px;
+
+                .item-image {
+                    width: 120px;
+                    height: 120px;
+                    border-radius: 50%;
+                    border-style: solid black;
+                    object-fit: cover;
+                }
+            }
+        }
+
+        .right {
+            flex: 2;
+        }
+    }
 }
