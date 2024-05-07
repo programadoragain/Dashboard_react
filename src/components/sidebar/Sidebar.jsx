@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import "./Sidebar.css";
 import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
 import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
@@ -16,16 +17,18 @@ const Sidebar = () => {
       <div className='top'>
         <span className='logo'>WS App</span>
       </div>
-      
+
       <hr />
 
       <div className='center'>
         <ul>
           <p className='title-items'>INICIO</p>
-          <li>
-            <DashboardOutlinedIcon className='icon' />
-            <span>Dashboard</span>
-          </li>
+          <Link to="/" className='links'>
+            <li>
+              <DashboardOutlinedIcon className='icon' />
+              <span>Dashboard</span>
+            </li>
+          </Link>
           <p className='title-items'>REGISTRO</p>
           <li>
             <MonetizationOnOutlinedIcon className='icon' />
@@ -47,7 +50,7 @@ const Sidebar = () => {
             <AssessmentOutlinedIcon className='icon' />
             <span>Informes</span>
           </li>
-            <p className='title-items'>CONFIGURACIÓN</p>
+          <p className='title-items'>CONFIGURACIÓN</p>
           <li>
             <SettingsOutlinedIcon className='icon' />
             <span>Ajustes</span>
@@ -58,10 +61,10 @@ const Sidebar = () => {
           </li>
         </ul>
       </div>
-      
+
       <div className='bottom'>
       </div>
-    
+
     </div>
   )
 }

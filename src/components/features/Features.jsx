@@ -19,14 +19,14 @@ const Features = () => {
 
         <p className="title">Ventas mensuales</p>
         <div className="data">
-          <p className="amount">$2.500.000</p>
+          <p className="amount">$ 2.500.000</p>
           <div className="icon"><ArrowUpwardIcon /></div>
         </div>  
 
         <div className="summary">
           <div className="item">
             <div className="item-title">Mes anterior</div>
-            <div className="item-result">$1.200.300</div>
+            <div className="item-result">$ 1.200.300</div>
           </div>
         </div>
 

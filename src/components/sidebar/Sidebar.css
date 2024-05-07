@@ -39,6 +39,10 @@
                 margin-bottom: 5px;
             }
 
+            .links {
+                text-decoration: none;
+            }
+
             li {
                 display: flex;
                 align-items: center;

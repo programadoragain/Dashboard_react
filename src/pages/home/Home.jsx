@@ -11,13 +11,13 @@ const Home = () => {
   const dataWidget = [
     {
       title: "VENTAS",
-      value: "123900",
+      value: "123.900",
       percentage: "30%",
       arrow: "up"
     },
     {
       title: "GASTOS",
-      value: "24900",
+      value: "24.900",
       percentage: "12%",
       arrow: "down"
     },
@@ -29,7 +29,7 @@ const Home = () => {
     },
     {
       title: "TOTAL",
-      value: "99000",
+      value: "99.000",
       percentage: "8%",
       arrow: "up"
     }
