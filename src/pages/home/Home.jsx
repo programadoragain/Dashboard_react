@@ -48,10 +48,11 @@ const Home = () => {
         </div>
         <div className="charts">
           <Features />
-          <Chart />
+          <Chart title="Gráfico mensuale" aspect={2 / 1} />
+
         </div>
         <div className="list-container">
-          <div className="list-title">Lista de transacciones</div>
+          <div className="list-title">Ultimas transacciones</div>
           <List />
         </div>
       </div>
