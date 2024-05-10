@@ -3,6 +3,7 @@ import './Single.css';
 import Sidebar from '../../components/sidebar/Sidebar';
 import Navbar from '../../components/navbar/Navbar';
 import Chart from '../../components/chart/Chart';
+import List from '../../components/table/List';
 
 const Single = () => {
   return (
@@ -39,7 +40,7 @@ const Single = () => {
         </div>
         <div className="bottom">
             <h2 className="title">Productos vendidos</h2>
-            asdasdasd
+            <List />
           </div>
       </div>
     </div>
