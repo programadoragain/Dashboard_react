@@ -4,14 +4,14 @@ import Sidebar from '../../components/sidebar/Sidebar';
 import Navbar from '../../components/navbar/Navbar';
 import { DriveFolderUploadOutlined } from '@mui/icons-material';
 
-const New = () => {
+const New = (inputs, title) => {
   return (
     <div className="new">
       <Sidebar />
       <div className="new-container">
         <Navbar />
         <div className="top">
-          <h4>Agregar nuevo usuario</h4>
+          <h4>{title}</h4>
         </div>
         <div className="bottom">
           <div className="left">
