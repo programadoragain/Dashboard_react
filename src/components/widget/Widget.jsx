@@ -10,7 +10,6 @@ import StoreOutlinedIcon from '@mui/icons-material/StoreOutlined';
 
 const Widget = ({ data }) => {
     let details;
-    console.log(data.percentage);
 
     switch(data.title) {
         case "VENTAS":

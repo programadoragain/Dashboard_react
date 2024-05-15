@@ -1,15 +1,15 @@
 export const userInputs = [
     {
       id: 1,
-      label: "Username",
+      label: "Nombre",
       type: "text",
-      placeholder: "john_doe",
+      placeholder: "Fernando Daniel",
     },
     {
       id: 2,
-      label: "Name and surname",
+      label: "Apellido",
       type: "text",
-      placeholder: "John Doe",
+      placeholder: "Diaz",
     },
     {
       id: 3,
@@ -18,27 +18,40 @@ export const userInputs = [
       placeholder: "john_doe@gmail.com",
     },
     {
-      id: 4,
-      label: "Phone",
-      type: "text",
-      placeholder: "+1 234 567 89",
-    },
-    {
       id: 5,
       label: "Password",
       type: "password",
+      placeholder: "*******"
+    },
+    {
+      id: 4,
+      label: "Teléfono",
+      type: "text",
+      placeholder: "2984 865656",
     },
     {
       id: 6,
-      label: "Address",
+      label: "Dirección",
       type: "text",
-      placeholder: "Elton St. 216 NewYork",
+      placeholder: "Tucumán 800",
     },
     {
       id: 7,
-      label: "Country",
+      label: "Ciudad",
       type: "text",
-      placeholder: "USA",
+      placeholder: "Gral. Roca",
+    },
+    {
+      id: 8,
+      label: "Provincia",
+      type: "text",
+      placeholder: "Rio Negro",
+    },
+    {
+      id: 9,
+      label: "Pais",
+      type: "text",
+      placeholder: "Argentina",
     },
   ];
   

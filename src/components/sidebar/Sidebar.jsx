@@ -15,7 +15,9 @@ const Sidebar = () => {
     <div className='sidebar'>
 
       <div className='top'>
-        <span className='logo'>WS App</span>
+        <Link to='/' style={{ textDecoration: 'none' }}>
+          <span className='logo'>WS App</span>
+        </Link>
       </div>
 
       <hr />
@@ -39,13 +41,18 @@ const Sidebar = () => {
             <span>Compras</span>
           </li>
           <p className='title-items'>LISTADOS</p>
-          <li>
-            <LocalActivityOutlinedIcon className='icon' />
-            <span>Productos</span></li>
-          <li>
-            <GroupOutlinedIcon className='icon' />
-            <span>Usuarios</span>
-          </li>
+          <Link to='/products' style={{ textDecoration: 'none' }}>
+            <li>
+              <LocalActivityOutlinedIcon className='icon' />
+              <span>Productos</span>
+            </li>
+          </Link>
+          <Link to='/users' style={{ textDecoration: 'none' }}>
+            <li>
+              <GroupOutlinedIcon className='icon' />
+              <span>Usuarios</span>
+            </li>
+          </Link>
           <li>
             <AssessmentOutlinedIcon className='icon' />
             <span>Informes</span>
