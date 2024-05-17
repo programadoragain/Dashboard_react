@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { React, useState } from 'react';
+import { Link, Navigate } from 'react-router-dom';
 import "./Sidebar.css";
 import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
 import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
@@ -11,11 +11,20 @@ import AssessmentOutlinedIcon from '@mui/icons-material/AssessmentOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 
 const Sidebar = () => {
+
+  const cerrarSession = () => {
+    try {
+      localStorage.removeItem('token');
+    } catch (error) {
+      console.log("No existe token.")
+    }
+  }
+
   return (
     <div className='sidebar'>
 
       <div className='top'>
-        <Link to='/' style={{ textDecoration: 'none' }}>
+        <Link to='' style={{ textDecoration: 'none' }}>
           <span className='logo'>WS App</span>
         </Link>
       </div>
@@ -25,7 +34,7 @@ const Sidebar = () => {
       <div className='center'>
         <ul>
           <p className='title-items'>INICIO</p>
-          <Link to="/" className='links'>
+          <Link to="/home" className='links'>
             <li>
               <DashboardOutlinedIcon className='icon' />
               <span>Dashboard</span>
@@ -62,10 +71,12 @@ const Sidebar = () => {
             <SettingsOutlinedIcon className='icon' />
             <span>Ajustes</span>
           </li>
-          <li>
-            <LogoutOutlinedIcon className='icon' />
-            <span>Salir</span>
-          </li>
+          <Link to="/" style={{ textDecoration: 'none' }}>
+            <li onClick={cerrarSession}>
+              <LogoutOutlinedIcon className='icon' />
+              <span>Salir</span>
+            </li>
+          </Link>
         </ul>
       </div>
 

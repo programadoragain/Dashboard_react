@@ -1,6 +1,6 @@
 import api from './interceptor';
 
-const SUB_URL= '/api/usuario';
+const SUB_URL= '/api/categoria';
   
 export async function create(data) {
     return await api.post(SUB_URL + '/registrar', data);
@@ -17,9 +17,3 @@ export async function deleteById(id) {
 export async function getAll() {
     return await api.get(SUB_URL + '/listar');
 }
-
-/* -- Pendiente en backend --
-export async function getAllById(id) {
-    return await api.get(`${SUB_URL}/obtener/${id}`);
-}
-*/

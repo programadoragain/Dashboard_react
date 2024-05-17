@@ -1,13 +1,13 @@
 import { React, useState } from 'react';
 import './Login.css';
 import { login } from '../../api/loginService';
-import Stack from '@mui/material/Stack';
-import Alert from '@mui/material/Alert';
+import { Navigate } from 'react-router-dom';
 
 const Login = () => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -26,18 +26,13 @@ const Login = () => {
           localStorage.setItem('token', token);
           setEmail("");
           setPassword("");
+          setIsLoggedIn(true);
         } else {
-            <Stack sx={{ width: '100%' }} spacing={2}>
-              <Alert severity="error">Error de conexión, intente nuevamente.</Alert>
-            </Stack> 
+            console.log("Error de conexión, intente nuevamente.");
         }  
         
       })
       .catch(error => {
-        // Maneja los errores aquí
-        <Stack sx={{ width: '100%' }} spacing={2}>
-          <Alert severity="error">Error de conexión, intente nuevamente.</Alert>
-        </Stack>  
         console.error('Error:', error);
       }
     );
@@ -60,16 +55,16 @@ const Login = () => {
           <input type="password" id="password" name="password" value={password}
             onChange={(e) => setPassword(e.target.value)} required />
 
-
           <div className="wrap">
             <button type="submit">
               Ingresar
             </button>
           </div>
 
-
         </form>
 
+        { isLoggedIn ? <Navigate to="/home" /> : null }
+       
       </div>
     </div>
   )
