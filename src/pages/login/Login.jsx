@@ -2,6 +2,7 @@ import { React, useState } from 'react';
 import './Login.css';
 import { login } from '../../api/loginService';
 import { Navigate } from 'react-router-dom';
+import { toastError, toastSuccess } from '../../api/toastService';
 
 const Login = () => {
 
@@ -13,10 +14,10 @@ const Login = () => {
     event.preventDefault();
 
     const credentials = {
-      "email" : email,
-      "password" : password
+      "email": email,
+      "password": password
     };
-      
+
     login(credentials)
       .then(response => {
         // Maneja la respuesta aquí
@@ -27,16 +28,24 @@ const Login = () => {
           setEmail("");
           setPassword("");
           setIsLoggedIn(true);
+          toastSuccess("Se ha loggeado exitosamente");
         } else {
-            console.log("Error de conexión, intente nuevamente.");
-        }  
-        
+          console.log(response.data);
+          toastError("Los datos son incorrectos.");
+          cleanForm();
+        }
+
       })
       .catch(error => {
         console.error('Error:', error);
+        toastError(error.message);
       }
-    );
+      );
+  }
 
+  const cleanForm = () => {
+    setEmail("");
+    setPassword("");
   }
 
   return (
@@ -63,8 +72,8 @@ const Login = () => {
 
         </form>
 
-        { isLoggedIn ? <Navigate to="/home" /> : null }
-       
+        {isLoggedIn ? <Navigate to="/home" /> : null}
+
       </div>
     </div>
   )

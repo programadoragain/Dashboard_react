@@ -1,0 +1,117 @@
+.new {
+    display: flex;
+    width: 100%;
+
+    .new-container {
+        flex: 5;
+
+        .title {
+            padding: 10px;
+            margin: 20px;
+            color: gray;
+            font-size: 14px;
+            box-shadow: 10px 2px 5px 0px rgba(201, 201, 201, 0.50);
+        }
+
+        .bottom {
+            -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.50);
+            box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.50);
+            padding: 10px;
+            margin: 20px;
+            display: flex;
+            height: 320px;
+
+            h4 {
+                color: lightgray;
+            }
+
+            .left {
+                flex: 1;
+                align-items: center;
+                margin-top: 15px;
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+
+                img {
+                    width: 140px;
+                    height: 140px;
+                    border-radius: 50%;
+                    border: 0.5px solid rgb(198, 192, 192);
+                    object-fit: cover;
+                    -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.50);
+                    box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.50);
+                }
+
+                label {
+                    display: flex;    
+                    align-items: center;
+                    text-align: center;
+                    margin: 10px 10px;
+                    font-size: 16px;
+
+                    .icon {
+                        font-size: 20px;
+                        margin-right: 10px;
+                        cursor: pointer;
+                    }
+                }
+            }
+
+            .right {
+                flex: 1;
+                padding: 25px 100px;
+
+                form {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 5px;
+
+                    .form-input {
+                        width: 150px;
+
+                        label {
+                            display: flex;
+                            align-items: center;
+                            font-size: 12px;
+                            color: gray;
+                        }
+
+                        input {
+                            width: 100%;
+                            margin-top: 5px;
+                            font-size: 15px;
+                            font-weight: 500;
+                            color: black;
+                            border: none;
+                            border-bottom: 1px solid gray;
+                        }
+
+                        select {
+                            width: 100%;
+                            margin-top: 5.5px;
+                            font-size: 15px;
+                            font-weight: 500;
+                            color: black;
+                            border: none;
+                            border-bottom: 1px solid gray;
+                        }
+                    }
+
+                }
+
+                button {
+                    width: 150px;
+                    margin-top: 60px;
+                    align-items: center;
+                    padding: 10px;
+                    border: none;
+                    background-color: teal;
+                    color: white;
+                    font-weight: bold;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

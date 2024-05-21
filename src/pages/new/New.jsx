@@ -8,6 +8,8 @@ const New = ({ inputs, title }) => {
 
   const [file, setFile] = useState("");
 
+
+
   return (
     <div className="new">
       <Sidebar />
@@ -29,7 +31,7 @@ const New = ({ inputs, title }) => {
           </div>
 
           <div className="right">
-            <form>
+            <form onSubmit="">
               <input type="file" id="file" onChange={e => setFile(e.target.files[0])} style={{ display: "none" }} hidden/>
           
               {inputs.map(input => (
@@ -39,7 +41,7 @@ const New = ({ inputs, title }) => {
                 </div>
               ))}
             </form>
-            <button action="">Guardar</button>
+            <button type="submit">Guardar</button>
           </div>
         </div>
       </div>

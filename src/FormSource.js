@@ -58,32 +58,32 @@ export const userInputs = [
   export const productInputs = [
     {
       id: 1,
-      label: "Title",
+      label: "Nombre",
       type: "text",
       placeholder: "Apple Macbook Pro",
     },
     {
       id: 2,
-      label: "Description",
+      label: "Categoria ",
       type: "text",
-      placeholder: "Description",
+      placeholder: "Computadoras",
     },
     {
       id: 3,
-      label: "Category",
+      label: "Descripción",
       type: "text",
-      placeholder: "Computers",
+      placeholder: "MC1 8GB DDR4 512GB",
     },
     {
       id: 4,
-      label: "Price",
+      label: "Precio",
       type: "text",
-      placeholder: "100",
+      placeholder: "1.200.000",
     },
     {
       id: 5,
       label: "Stock",
       type: "text",
-      placeholder: "in stock",
+      placeholder: "3",
     },
   ];

@@ -38,12 +38,6 @@ const Datatable = () => {
 
   return (
     <div className='datatable'>
-      <div className='title'>
-        Listado de Usuarios
-        <Link to='/users/new' className='link-button'>
-          + Nuevo Usuario
-        </Link>
-      </div>
       <DataGrid className='datagrid'
         rows={data}
         columns={userColumns.concat(actionColumn)}
