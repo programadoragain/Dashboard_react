@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 import './NewProduct.css';
 import Sidebar from '../../components/sidebar/Sidebar';
 import Navbar from '../../components/navbar/Navbar';
@@ -19,6 +19,7 @@ const NewProduct = () => {
     descripcion: '',
     precio: '',
   });
+
   const [categoryData, setCategoryData] = useState("");
 
   const getCategory = () => {
@@ -31,6 +32,9 @@ const NewProduct = () => {
     })
   }
 
+  useEffect(() => {
+    getCategory();
+  })
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -128,8 +132,8 @@ const NewProduct = () => {
                   onChange={handleChange}
                   required>
                     
-                  {categoryData.map(input => (
-                    <option key={categoryData.id} value={categoryData.nombre}>{categoryData.nombre}</option>
+                  {categoryData.map((input) => (
+                    <option key={input.id} value={input.nombre}>{input.nombre}</option>
                   ))}
                         
                 </select>
