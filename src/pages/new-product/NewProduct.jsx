@@ -127,10 +127,11 @@ const NewProduct = () => {
                   value={formData.categoria}
                   onChange={handleChange}
                   required>
-                    <option value=""></option>
-                    <option value="volvo">Computadoras</option>
-                    <option value="saab">Auriculares</option>
-                    <option value="opel">Pendrives</option>     
+                    
+                  {categoryData.map(input => (
+                    <option key={categoryData.id} value={categoryData.nombre}>{categoryData.nombre}</option>
+                  ))}
+                        
                 </select>
               </div>
 
