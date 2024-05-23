@@ -6,36 +6,55 @@ import Widget from '../../components/widget/Widget';
 import Features from '../../components/features/Features';
 import Chart from '../../components/chart/Chart';
 import List from '../../components/table/List';
-import { getSaleCardForWidget, getProductCardForWidget } from '../../api/dashboardService';
+import { getSaleCardForWidget, 
+         getProductCardForWidget, 
+         getOutgoinCardForWidget } from '../../api/dashboardService';
 
 const Home = () => {
-  const [saleCard, setSaleCard] = useState('');
-  const [productCard, setProductCard] = useState('');
+  const [saleCard, setSaleCard] = useState({
+    title: '',
+    value: '',
+    percentage: '', 
+    arrow: ''  
+  });
+  const [productCard, setProductCard] = useState({
+    title: '',
+    value: '',
+    percentage: '', 
+    arrow: ''  
+  });
+  const [outgoinCard, setOutgoinCard] = useState({
+    title: '',
+    value: '',
+    percentage: '', 
+    arrow: ''  
+  });
 
-  const getDataWidget = async () => {
-    try {
-      const { data } = await getSaleCardForWidget();
-      setSaleCard(data);
-      console.log(data);
-      data = await getProductCardForWidget();
-      setProductCard(data);
-      console.log(data);
+  const getDataWidget = () => {
+    getSaleCardForWidget().then(response => {
+      setSaleCard(response.data);  
+    }).catch(error => console.log(error.message));
+    
+    getProductCardForWidget().then(response => {
+      setProductCard(response.data);  
+    }).catch(error => console.log(error.message));
 
-    } catch (error) {
-      console.log(error);
-    }
+    getOutgoinCardForWidget().then(response => {
+      setOutgoinCard(response.data);  
+    }).catch(error => console.log(error.message));
+    
   }
 
   useEffect(() => {
     getDataWidget();
-  })
+  }, []);
 
   const dataWidget = [
     {
-      title: saleCard.titulo, //dataWidget.title
-      value: saleCard.valor, //dataWidget.value
-      percentage: saleCard.percentage, //dataWidget.porcentage
-      arrow: saleCard.arrow //dataWidget.arrow
+      title: "VENTAS",
+      value: "99.900",
+      percentage: "22%",
+      arrow: "up"
     },
     {
       title: "GASTOS",
@@ -45,7 +64,7 @@ const Home = () => {
     },
     {
       title: "PRODUCTOS",
-      value: productCard.valor,
+      value: "2",
       percentage: "23%",
       arrow: "up"
     },
@@ -63,9 +82,9 @@ const Home = () => {
       <div className="main-container">
         <Navbar />
         <div className="widgets">
-          <Widget data={dataWidget[0]} />
+          <Widget data={saleCard} />
           <Widget data={dataWidget[1]} />
-          <Widget data={dataWidget[2]} />
+          <Widget data={productCard} />
           <Widget data={dataWidget[3]} />
         </div>
         <div className="charts">

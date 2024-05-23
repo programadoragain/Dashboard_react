@@ -7,5 +7,9 @@ export async function getSaleCardForWidget() {
 }
 
 export async function getProductCardForWidget() {
-    return await api.get(SUB_URL + '/dataWidget/producto');
+    return await api.get(SUB_URL + '/dataWidget/productos');
+}
+
+export async function getOutgoinCardForWidget() {
+    return await api.get(SUB_URL + '/dataWidget/gastos');
 }

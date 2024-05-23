@@ -2,14 +2,13 @@ import React from 'react';
 import "./Widget.css";
 import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
 import ArrowDownwardOutlinedIcon from '@mui/icons-material/ArrowDownwardOutlined';
-import AttachMoneyOutlinedIcon from '@mui/icons-material/AttachMoneyOutlined';
 import LocalAtmOutlinedIcon from '@mui/icons-material/LocalAtmOutlined';
 import InventoryOutlinedIcon from '@mui/icons-material/InventoryOutlined';
 import AccountBalanceWalletOutlinedIcon from '@mui/icons-material/AccountBalanceWalletOutlined';
 import StoreOutlinedIcon from '@mui/icons-material/StoreOutlined';
 
 const Widget = ({ data }) => {
-    let details;
+    let details= {};
 
     switch(data.title) {
         case "VENTAS":
@@ -53,7 +52,7 @@ const Widget = ({ data }) => {
         <div className='widget'>
             <div className='left'>
                 <div className='title'> {data.title} </div>
-                <div className='data'> {details.isMoney ? "$ " + data.value : data.value } </div>
+                <div className='data'> {details.isMoney ? ("$ " + data.value) : data.value } </div>
                 <div className='link'> {details.link} </div>
             </div>
             <div className='right'>
