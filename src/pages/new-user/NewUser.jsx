@@ -3,9 +3,8 @@ import './NewUser.css';
 import Sidebar from '../../components/sidebar/Sidebar';
 import Navbar from '../../components/navbar/Navbar';
 import { DriveFolderUploadOutlined } from '@mui/icons-material';
-import { create } from '../../api/userService';
+import { create, uploadPhoto } from '../../api/userService';
 import { toastError, toastSuccess } from '../../api/toastService';
-
 
 const NewUser = () => {
 
@@ -27,7 +26,16 @@ const NewUser = () => {
 
     create(formData)
       .then(response => {
-        console.log('Response:', response.data);
+        const dataUpload = new FormData();
+        dataUpload.append('id', response.data.id);
+        dataUpload.append('file', file);
+
+        uploadPhoto(dataUpload)
+          .then(response => {
+            console.log("Imagen cargada correctamente");
+          })
+          .catch(error => console.log(error.message));
+
         cleanForm();
         toastSuccess("Se ha registrado exitosamente");
       })
@@ -44,6 +52,7 @@ const NewUser = () => {
         email: '',
         password: ''
     });
+    setFile("");
   }
 
   return (

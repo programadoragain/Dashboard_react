@@ -3,7 +3,7 @@ import './NewProduct.css';
 import Sidebar from '../../components/sidebar/Sidebar';
 import Navbar from '../../components/navbar/Navbar';
 import { DriveFolderUploadOutlined } from '@mui/icons-material';
-import { create } from '../../api/productService';
+import { create, uploadPhoto } from '../../api/productService';
 import { getAll } from '../../api/categoryService';
 import { toastError, toastSuccess } from '../../api/toastService';
 
@@ -11,21 +11,23 @@ import { toastError, toastSuccess } from '../../api/toastService';
 const NewProduct = () => {
 
   const [file, setFile] = useState("");
+  const [categoryData, setCategoryData] = useState(null);
   const [formData, setFormData] = useState({
+    codBarra: '',
     nombre: '',
     marca: '',
     modelo: '',
-    categoria: '',
+    categoria: {id:'', nombre: ''},
     descripcion: '',
-    precio: '',
+    valor: '',
+    stock: '',
+    activo: true
   });
-
-  const [categoryData, setCategoryData] = useState("");
 
   const getCategory = () => {
     getAll().then((response) => {
-    console.log('Response:', response.data);
-    setCategoryData(response);
+      console.log('Response:', response.data);
+      setCategoryData(response.data);
     }).catch((error) => {
       console.log("Error al cargar las categorias")
       toastError("Error al cargar las categorias");
@@ -34,19 +36,49 @@ const NewProduct = () => {
 
   useEffect(() => {
     getCategory();
-  })
+  }, [])
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
+  const handleSelectChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      categoria: {
+        ...prevFormData.categoria,
+        id: value
+      }
+    }));
+  };
+
+  /*
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      imagen: file
+    }));
+  };
+  */
+ 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    create(formData.append({imagen: file})) //verificar append
+    create(formData)
       .then(response => {
-        console.log('Response:', response.data);
+        const dataUpload = new FormData();
+        dataUpload.append('id', response.data.id);
+        dataUpload.append('file', file);
+
+        uploadPhoto(dataUpload)
+          .then(response => {
+            console.log("Imagen cargada correctamente");
+          })
+          .catch(error => console.log(error.message));
+
         cleanForm();
         toastSuccess("Se ha registrado exitosamente");
       })
@@ -58,14 +90,16 @@ const NewProduct = () => {
 
   function cleanForm() {
     setFormData({
-        nombre: '',
-        marca: '',
-        modelo: '',
-        categoria: '',
-        descripcion: '',
-        precio: '',
-        imagen: ''
+      codBarra: '',
+      nombre: '',
+      marca: '',
+      modelo: '',
+      categoria: {id:'', nombre: ''},
+      descripcion: '',
+      valor: '',
+      stock: '',
     });
+    setFile("");
   }
 
   return (
@@ -83,7 +117,7 @@ const NewProduct = () => {
               src={(file) ? URL.createObjectURL(file) : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"}
               alt=""
             />
-            <label htmlFor="file" style={{cursor:"pointer"}}>
+            <label htmlFor="file" style={{ cursor: "pointer" }}>
               <DriveFolderUploadOutlined className="icon" />Seleccionar imagen
             </label>
           </div>
@@ -91,7 +125,12 @@ const NewProduct = () => {
           <div className="right">
 
             <form onSubmit={handleSubmit}>
-              <input type="file" id="file" onChange={e => setFile(e.target.files[0])} style={{ display: "none" }} hidden />
+              <input type="file" 
+                     id="file" 
+                     name="file"
+                     onChange={e => setFile(e.target.files[0])}
+                     style={{ display: "none" }} 
+                     hidden />
 
               <div className="form-input">
                 <label>Nombre</label>
@@ -128,23 +167,24 @@ const NewProduct = () => {
                 <select
                   id="categoria"
                   name="categoria"
-                  value={formData.categoria}
-                  onChange={handleChange}
+                  value={formData.categoria.id}
+                  onChange={handleSelectChange}
                   required>
-                    
-                  {categoryData.map((input) => (
-                    <option key={input.id} value={input.nombre}>{input.nombre}</option>
+
+                  <option value=""></option>
+                  {Array.isArray(categoryData) && categoryData.map((input) => (
+                    <option key={input.id} value={input.id}>{input.nombre}</option>
                   ))}
-                        
+
                 </select>
               </div>
 
               <div className="form-input">
                 <label>Precio</label>
                 <input type="number"
-                  id="precio"
-                  name="precio"
-                  value={formData.precio}
+                  id="valor"
+                  name="valor"
+                  value={formData.valor}
                   onChange={handleChange}
                   required />
               </div>
@@ -152,18 +192,18 @@ const NewProduct = () => {
               <div className="form-input">
                 <label>Cantidad</label>
                 <input type="number"
-                  id="cantidad"
-                  name="cantidad"
-                  value={formData.cantidad}
+                  id="stock"
+                  name="stock"
+                  value={formData.stock}
                   onChange={handleChange}
                   placeholder=''
                   required />
               </div>
-            
+
               <button type="submit">Guardar</button>
             </form>
 
-            
+
           </div>
         </div>
       </div>

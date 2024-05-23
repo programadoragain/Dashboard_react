@@ -1,7 +1,8 @@
+import axios from 'axios';
 import api from './interceptor';
 
-const SUB_URL= '/api/producto';
-  
+const SUB_URL = '/api/producto';
+
 export async function create(data) {
     return await api.post(SUB_URL + '/registrar', data);
 }
@@ -28,5 +29,17 @@ export async function getAllByStock() {
 
 export async function getAllByCategory(id) {
     return await api.get(`${SUB_URL}/listarporcategoria/${id}`);
+}
+
+export async function uploadPhoto(dataUpload) {
+    const multipartFileCall = axios.create({
+        baseURL: 'http://localhost:8081',
+        headers: {
+            'Content-Type': 'multipart/form-data',
+            'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        }
+    });
+
+    return await multipartFileCall.put(SUB_URL + '/upload-photo', dataUpload);
 }
 

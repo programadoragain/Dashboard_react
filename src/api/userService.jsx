@@ -1,3 +1,4 @@
+import axios from 'axios';
 import api from './interceptor';
 
 const SUB_URL= '/api/usuario';
@@ -16,6 +17,18 @@ export async function deleteById(id) {
 
 export async function getAll() {
     return await api.get(SUB_URL + '/listar');
+}
+
+export async function uploadPhoto(dataUpload) {
+    const multipartFileCall = axios.create({
+        baseURL: 'http://localhost:8081',
+        headers: {
+            'Content-Type': 'multipart/form-data',
+            'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        }
+    });
+
+    return await multipartFileCall.put(SUB_URL + '/upload-photo', dataUpload);
 }
 
 /* -- Pendiente en backend --
