@@ -4,6 +4,7 @@ import './List.css';
 import Sidebar from '../../components/sidebar/Sidebar';
 import Navbar from '../../components/navbar/Navbar';
 import Datatable from '../../components/datatable/Datatable';
+import ProducTablePrime from '../../components/table/ProducTablePrime';
 
 const List = ({ title, buttonName, linkTo }) => {
 
@@ -24,7 +25,8 @@ const List = ({ title, buttonName, linkTo }) => {
           </div>
         </div>
 
-        <Datatable />
+        {/* <Datatable /> */}
+        <ProducTablePrime />
       </div>
     </div>
   )
