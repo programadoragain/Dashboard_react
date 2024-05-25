@@ -3,12 +3,11 @@ import Home from './pages/home/Home';
 import Login from './pages/login/Login';
 import List from './pages/list/List';
 import Single from './pages/single/Single';
-import New from './pages/new/New';
 import NewUser from './pages/new-user/NewUser';
-import { userInputs, productInputs } from './FormSource';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import NewProduct from './pages/new-product/NewProduct';
+import { PrimeReactProvider, PrimeReactContext } from 'primereact/api';
 
 function App() {
   return (
