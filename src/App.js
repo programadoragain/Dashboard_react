@@ -24,6 +24,7 @@ function App() {
               <Route path="new" element={<NewUser />} />
             </Route>
             <Route path="products">
+              {/*<Route index element={<List title="Listado de productos" buttonName="+ Nuevo producto" linkTo="/products/new" />} /> */}
               <Route index element={<List title="Listado de productos" buttonName="+ Nuevo producto" linkTo="/products/new" />} />
               <Route path=":productId" element={<Single />} />
               <Route path="new" element={<NewProduct />} />

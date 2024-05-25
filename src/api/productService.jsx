@@ -43,3 +43,15 @@ export async function uploadPhoto(dataUpload) {
     return await multipartFileCall.put(SUB_URL + '/upload-photo', dataUpload);
 }
 
+export async function getPhoto(dir) {
+    const multipartFileCall = axios.create({
+        baseURL: 'http://localhost:8081',
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('token'),
+            'responseType': 'blob',
+        }
+    });
+
+    return await multipartFileCall.get(`${SUB_URL}/get-photo/${dir}`);
+}
+

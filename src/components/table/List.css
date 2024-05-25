@@ -1,4 +1,6 @@
 .table {
+
+    padding: 20px;
     .table-cell {
         .cell-image {
             display: flex;
