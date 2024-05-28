@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from 'react';
-import './List.css';
+import './TableProduct.css';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -8,35 +8,60 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { getAll, getPhoto } from '../../api/productService';
+import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
+import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
+import { Link } from 'react-router-dom';
 
 
-const ProducTablePrime = () => {
+const TableProduct = () => {
     const [data, setData] = useState([]);
     const [imageUrls, setImageUrls] = useState([]);
 
-    useEffect(() => {
-        getAll().then(response => {
-            const products = response.data;
-            setData(products);
-            //console.log(products);    
 
-            const imageUrls = {};
-            for (const product of products) {
-                const imageUrl = getImage(product.imagen);
-                imageUrls[product.id] = imageUrl;
+    async function loadDataAndImages() {
+        const response = await getAll();
+        const products = response.data;
+        setData(products);
+
+        const imageUrlObjectArray = {};
+
+        await Promise.all(products.map(async (product) => {
+            try {
+                const imageResponse = await getPhoto(product.imagen);
+                const imageUrl = URL.createObjectURL(new Blob([imageResponse.data], { type: imageResponse.headers['Content-Type'] }));
+                imageUrlObjectArray[product.id] = imageUrl;
+            } catch (error) {
+                console.log("Error al procesar la imagen para el producto con ID " + product.id + ": " + error.message);
             }
-            setImageUrls(imageUrls);
+        }));
 
-        }).catch(error => console.log(error.message));
-    }, []);
-
-    const getImage = (rutaImagenProducto) => {
-        getPhoto(rutaImagenProducto).then(response => {
-            const url = URL.createObjectURL(new Blob([response.data], { type: response.headers['content-type'] }));
-            return url;
-        }).catch(error => console.log(error.message));
+        setImageUrls(imageUrlObjectArray);
+        console.log(imageUrls);
     }
 
+    useEffect(() => {
+        loadDataAndImages();
+    }, []);
+
+    const acciones = () => {
+        return (
+            <div className=''>
+                <Link to='/users/1' style={{ textDecoration: 'none' }}>
+                    <div className=''>
+                        <VisibilityOutlinedIcon fontSize='medium' />
+                    </div>
+                </Link>
+                <div className='' onClick={() => handleDelete("1")}>
+                    <DeleteForeverOutlinedIcon fontSize='medium' />
+                </div>
+            </div>
+        );
+    }
+
+    const handleDelete= (id) => {
+        setData(data.filter((item) => item.id !== id));
+    }
+      
     return (
         <div className='table'>
             <TableContainer component={Paper}>
@@ -49,7 +74,7 @@ const ProducTablePrime = () => {
                             <TableCell className='table-header'>Categoria</TableCell>
                             <TableCell className='table-header'>Valor</TableCell>
                             <TableCell className='table-header'>Stock</TableCell>
-                            <TableCell className='table-header'>Activo</TableCell>
+                            <TableCell className='table-header'>Acciónes</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -67,7 +92,7 @@ const ProducTablePrime = () => {
                                 <TableCell className='table-cell'>{row.categoria}</TableCell>
                                 <TableCell className='table-cell'>{row.valor}</TableCell>
                                 <TableCell className='table-cell'>{row.stock}</TableCell>
-                                <TableCell className='table-cell'>{row.activo}</TableCell>
+                                <TableCell className='table-cell'>{acciones}</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
@@ -77,4 +102,4 @@ const ProducTablePrime = () => {
     )
 }
 
-export default ProducTablePrime
+export default TableProduct

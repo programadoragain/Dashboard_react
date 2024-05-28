@@ -36,6 +36,7 @@ export async function uploadPhoto(dataUpload) {
         baseURL: 'http://localhost:8081',
         headers: {
             'Content-Type': 'multipart/form-data',
+            'Access-Control-Allow-Origin': 'http://localhost:3000',
             'Authorization': 'Bearer ' + localStorage.getItem('token'),
         }
     });
@@ -44,14 +45,31 @@ export async function uploadPhoto(dataUpload) {
 }
 
 export async function getPhoto(dir) {
-    const multipartFileCall = axios.create({
+    const photoCall = axios.create({
         baseURL: 'http://localhost:8081',
         headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem('token'),
-            'responseType': 'blob',
-        }
+            'Content-Type': 'image/jpeg',
+            'Access-Control-Allow-Origin': 'http://localhost:3000',
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+        },
+        responseType: 'blob',
     });
 
-    return await multipartFileCall.get(`${SUB_URL}/get-photo/${dir}`);
+    return await photoCall.get(`${SUB_URL}/get-photo/${dir}`);
 }
 
+/*
+export async function fetchImage(path) {
+    try {
+        const response = await fetch(`http://localhost:8081/api/producto/get-photo/${path}`, {
+            method: 'GET',
+            credentials: 'include', // Incluye credenciales como cookies si es necesario
+            headers: {
+                'Content-Type': 'image/jpeg', // Ajusta esto según el tipo de imagen que estás solicitando
+                'Access-Control-Allow-Origin': 'http://localhost:3000',
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        });
+    } catch (error) {}
+}
+*/

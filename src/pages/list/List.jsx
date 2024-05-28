@@ -25,7 +25,7 @@ const List = ({ title, buttonName, linkTo }) => {
           </div>
         </div>
 
-        <TableProduct /> 
+        <TableProduct />
       </div>
     </div>
   )
