@@ -7,6 +7,7 @@ import NewUser from './pages/new-user/NewUser';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import NewProduct from './pages/new-product/NewProduct';
+import NewSale from './pages/new-sale/NewSale';
 import { PrimeReactProvider, PrimeReactContext } from 'primereact/api';
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
               <Route index element={<List title="Listado de productos" buttonName="+ Nuevo producto" linkTo="/products/new" />} />
               <Route path=":productId" element={<Single />} />
               <Route path="new" element={<NewProduct />} />
+              <Route path="sale" element={<NewSale />} />
             </Route>
           </Route>
         </Routes>

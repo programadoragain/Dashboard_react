@@ -6,7 +6,7 @@ import { DriveFolderUploadOutlined } from '@mui/icons-material';
 import { create, uploadPhoto } from '../../api/productService';
 import { getAll } from '../../api/categoryService';
 import { toastError, toastSuccess } from '../../api/toastService';
-
+import Button from '@mui/material/Button';
 
 const NewProduct = () => {
 
@@ -200,7 +200,6 @@ const NewProduct = () => {
                   required />
               </div>
 
-              <button type="submit">Guardar</button>
             </form>
 
 
