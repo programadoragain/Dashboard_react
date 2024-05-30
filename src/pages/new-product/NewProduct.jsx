@@ -6,6 +6,8 @@ import { DriveFolderUploadOutlined } from '@mui/icons-material';
 import { create, uploadPhoto } from '../../api/productService';
 import { getAll } from '../../api/categoryService';
 import { toastError, toastSuccess } from '../../api/toastService';
+import Button from '@mui/material/Button';
+import SaveAltOutlinedIcon from '@mui/icons-material/SaveAltOutlined';
 
 
 const NewProduct = () => {
@@ -112,6 +114,7 @@ const NewProduct = () => {
         </div>
         <div className="bottom">
 
+
           <div className="left">
             <img
               src={(file) ? URL.createObjectURL(file) : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"}
@@ -121,6 +124,7 @@ const NewProduct = () => {
               <DriveFolderUploadOutlined className="icon" />Seleccionar imagen
             </label>
           </div>
+ 
 
           <div className="right">
 
@@ -200,7 +204,14 @@ const NewProduct = () => {
                   required />
               </div>
 
-              <button type="submit">Guardar</button>
+
+            <div className="button-form">
+              <button type="submit">
+                <SaveAltOutlinedIcon className="icon" size="large"/>
+                GUARDAR
+              </button>
+            </div>
+
             </form>
 
 
