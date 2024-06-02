@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Home from './pages/home/Home';
 import Login from './pages/login/Login';
 import List from './pages/list/List';
@@ -8,12 +8,24 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import NewProduct from './pages/new-product/NewProduct';
 import NewSale from './pages/new-sale/NewSale';
-import { PrimeReactProvider, PrimeReactContext } from 'primereact/api';
+import { AuthProvider, AuthContext } from './context/AuthContext';
+import { useContext } from 'react';
+
+// Componente para proteger las rutas
+const RequireAuth = ({ children }) => {
+  const { isAuthenticated } = useContext(AuthContext);
+  const location = useLocation();
+
+  if (!isAuthenticated) {
+    return <Navigate to="/" state={{ from: location }} />;
+  }
+
+  return children;
+};
 
 function App() {
   return (
     <div className="app">
-
       <BrowserRouter>
         <Routes>
           <Route path="/">
@@ -35,7 +47,6 @@ function App() {
         </Routes>
       </BrowserRouter>
       <ToastContainer />
-
     </div>
   );
 }
